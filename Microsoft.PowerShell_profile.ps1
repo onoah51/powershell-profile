@@ -1,6 +1,3 @@
-# Test connection to GitHub
-$canConnectToGithub = Test-Connection github.com -Count 1 -Quiet -TimeoutSeconds 1
-
 # Verify module installations
 if (-Not(Get-Module -ListAvailable -Name Terminal-Icons)) {
     Install-Module -Name Terminal-Icons -Scope CurrentUser -Force -SkipPublisherCheck
@@ -19,11 +16,6 @@ Import-Module -Name SnipeITPS
 
 # Function for profile updates
 function Update-Profile {
-    if (-Not $global:canConnectToGithub) {
-        Write-Host "Skipping profile update check due to GitHub not responding within 1 second." -ForegroundColor Yellow
-        Return
-    }
-
     try {
         $url = "https://raw.githubusercontent.com/onoah51/powershell-profile/main/Microsoft.PowerShell_profile.ps1"
         $oldHash = Get-FileHash $Profile
@@ -41,11 +33,6 @@ function Update-Profile {
 }
 
 function Update-PowerShell {
-    if (-Not $global:canConnectToGoogle) {
-        Write-Host "Skipping PowerShell update check due to GitHub not responding within 1 second." -ForegroundColor Yellow
-        Return
-    }
-
     try {
         Write-Host "Checking for PowerShell updates..." -ForegrounColor Cyan
         $updateNeeded = $false
