@@ -34,7 +34,7 @@ function Update-Profile {
 
 function Update-PowerShell {
     try {
-        Write-Host "Checking for PowerShell updates..." -ForegrounColor Cyan
+        Write-Host "Checking for PowerShell updates..." -ForegroundColor Cyan
         $updateNeeded = $false
         $currentVersion = $PSVersionTable.PSVersion.ToString()
         $gitHubApiUrl = "https://api.github.com/repos/PowerShell/PowerShell/releases/latest"
